@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Vue Application Demo</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.33/browser-polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.33/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/js/epoch.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/css/epoch.min.css" media="screen">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="main.css" media="screen">
+  </head>
+  <body>
+
+  <h1>RethinkDB Poll Demo</h1>
+
+  <div id="poll-list" class="content">
+    <h2>Active Polls</h2>
+
+    <ul>
+      <li v-for="poll in polls">
+        <a href="/poll?id={{poll.id}}">{{poll.title}}</a>
+      </li>
+    </ul>
+
+    <a class="button" href="/poll">New Poll</a>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: "body", data: { polls: [] },
+      created: function() {
+        this.$http.get("/api/polls").then(function(out) {
+          app.polls = out.data;
+        });
+      }
+    });
+  </script>
+
+  </body>
+</html>
