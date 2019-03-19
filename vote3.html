@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Vote</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.min.css" rel="stylesheet">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  </head>
+<body style="background-color:#181819;">
+<script>
+var start = new Date();
+var maxTime = 20000;
+var timeoutVal = Math.floor(maxTime/100);
+animateUpdate();
+
+function updateProgress(percentage) {
+    $('#pbar_innerdiv').css("width", percentage + "%");
+    $('#pbar_innertext').text(percentage + "%");
+}
+
+function animateUpdate() {
+    var now = new Date();
+    var timeDiff = now.getTime() - start.getTime();
+    var perc = Math.round((timeDiff/maxTime)*100);
+    console.log(perc);
+      if (perc <= 100) {
+       updateProgress(100-perc);
+       setTimeout(animateUpdate, timeoutVal);
+      }
+}
+</script>
+<script>setTimeout(function(){window.location.href='waitq3.html'},20000);</script>
+    <header class="masthead">
+      <div class="container text-center my-auto">
+<font color="white"><br><h1>Should they watch the tape?</h1></font>
+<hr style="height:6px;border:none;color:white;background-color:white;" />
+<br><br>
+<div style="font-family: 'Patua One', serif;">
+<a href="phppaths/q3watch.php" class="button"><font color="black">Watch it</font></a><br>
+<a href="phppaths/q3dontwatch.php" class="button"><font color="black">Don't watch it</font></a>
+<br><br><font color="white">Time Left:</font><br><div id="pbar_outerdiv" style="width: 100%; height: 35px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
+<div id="pbar_innerdiv" style="background-color: #41d846; z-index: 2; height: 100%; width: 100%;"></div>
+<div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: black; font-weight: bold; text-align: center;">0%</div>
+</div>
+</div>
+</div>
+    </header>
+  </body>
+
+</html>

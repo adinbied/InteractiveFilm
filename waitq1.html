@@ -20,6 +20,28 @@
 <body style="background-color:#181819;">
     <header class="masthead">
       <div class="container text-center my-auto">
+<hr style="height:6px;border:none;color:white;background-color:white;" />
+<br>
+</div>
+<script>
+function checkFile()
+{
+    $.ajax({
+        type: 'HEAD',
+        url: 'tmp/votestartq2.txt',
+        error : function(){
+            setTimeout(function(){ checkFile(); }, 1000);
+        },
+        success : function(data) {
+            window.location = 'vote2.html';
+        }
+    });
+}
+
+$(function() {
+    checkFile();
+});
+</script>
 </div>
     </header>
   </body>

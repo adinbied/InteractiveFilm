@@ -1,0 +1,1 @@
+cd "/mnt/c/Program Files (x86)/Ampps/www/vote" && python checkvotesq4.py
